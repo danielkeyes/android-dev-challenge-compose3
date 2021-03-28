@@ -21,6 +21,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 
+//TODO - update colors
 private val DarkColorPalette = darkColors(
     primary = purple200,
     primaryVariant = purple700,
