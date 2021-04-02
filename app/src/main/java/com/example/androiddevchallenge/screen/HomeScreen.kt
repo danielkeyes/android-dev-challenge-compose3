@@ -15,13 +15,13 @@
  */
 package com.example.androiddevchallenge.screen
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -29,11 +29,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomSheetScaffold
 import androidx.compose.material.BottomSheetState
 import androidx.compose.material.BottomSheetValue
-import androidx.compose.material.Button
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -46,6 +44,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,6 +53,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.components.ClearOutlinedButton
 import com.example.androiddevchallenge.components.SolidButton
+import com.example.androiddevchallenge.data.FilterHelper
+import com.example.androiddevchallenge.data.StockPositionsList
+import com.example.androiddevchallenge.data.StockPositionsDataHelper
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.green
 import com.example.androiddevchallenge.ui.theme.typography
@@ -69,7 +71,7 @@ fun HomeScreen(navController: NavHostController) {
     BottomSheetScaffold(
         scaffoldState = bottomSheetScaffoldState,
         sheetContent = { 
-            Positions(positions = PositionsHelper().getPositions())
+            StockPositionsList(positions = StockPositionsDataHelper.getStockPositions())
         },
         sheetPeekHeight = sheetPeakHeight,
         sheetShape = RectangleShape,
@@ -98,26 +100,22 @@ fun HomeScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(24.dp))
             Text(text = "+412.35 today",modifier = Modifier.paddingFromBaseline(16.dp), style = typography.subtitle1, color = green)
             Spacer(modifier = Modifier.height(32.dp))
+
+            val context = LocalContext.current
             SolidButton(
                 modifier = Modifier.fillMaxWidth().height(48.dp),
                 text = "TRANSACT",
-                onClick = { /*TODO*/ }
+                onClick = {
+                    Toast.makeText(context, "Transact clicked", Toast.LENGTH_SHORT).show()
+                }
             )
+
             Spacer(modifier = Modifier.height(16.dp))
-            val myItems = listOf<Filter>(
-                Filter("Week", true),
-                Filter("ETFs"),
-                Filter("Stocks"),
-                Filter("Funds"),
-                Filter("Funds"),
-                Filter("Funds"),
-                Filter("Funds"),
-            )
             LazyRow(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                items(myItems) { item ->
+                items(FilterHelper.getFilters()) { item ->
                     val buttonModifier = Modifier.height(40.dp)
                     if (item.hasOptions){
                         ClearOutlinedButton(text = item.text, modifier = buttonModifier, icon = Icons.Filled.ExpandMore, onClick = {  }, color = Color.White )
@@ -149,5 +147,3 @@ fun HomeScreenPreview() {
         HomeScreen(rememberNavController())
     }
 }
-
-data class Filter(val text: String, val hasOptions: Boolean = false)

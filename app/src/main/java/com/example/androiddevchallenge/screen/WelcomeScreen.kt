@@ -26,7 +26,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedButton
@@ -90,7 +89,9 @@ fun WelcomeScreen(navController: NavHostController) {
                         .fillMaxHeight()
                         .weight(1f),
                     text = "GET STARTED",
-                    onClick = { /*TODO*/ }
+                    onClick = {
+                        Toast.makeText(context,"Get Started not implemented",Toast.LENGTH_SHORT).show()
+                    }
                 )
                 OutlinedButton(
                     modifier = Modifier

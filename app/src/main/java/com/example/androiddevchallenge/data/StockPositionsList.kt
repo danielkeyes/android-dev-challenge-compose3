@@ -1,4 +1,4 @@
-package com.example.androiddevchallenge.screen
+package com.example.androiddevchallenge.data
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,7 +32,7 @@ import com.example.androiddevchallenge.ui.theme.typography
 // TODO this naming hurts readability
 
 @Composable
-fun Positions(positions: List<Position>) {
+fun StockPositionsList(positions: List<StockPositionDO>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,14 +54,14 @@ fun Positions(positions: List<Position>) {
                         .height(1.dp)
                         .background(color = gray700)
                 )
-                Position(position)
+                StockPosition(position)
             }
         }
     }
 }
 
 @Composable
-fun Position(position: Position) {
+fun StockPosition(position: StockPositionDO) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
@@ -108,17 +107,17 @@ fun Position(position: Position) {
 
 @Preview
 @Composable
-fun PositionsPreview() {
-    Positions(PositionsHelper().getPositions())
+fun StockPositionsListPreview() {
+    StockPositionsList(StockPositionsDataHelper.getStockPositions())
 }
 
 @Preview
 @Composable
-fun PositionPreview() {
-    Position(PositionsHelper().getPosition())
+fun StockPositionPreview() {
+    StockPosition(StockPositionsDataHelper.getStockPosition())
 }
 
-data class Position(
+data class StockPositionDO(
     val acronym: String,
     val name: String,
     val value: String,
@@ -126,23 +125,32 @@ data class Position(
     val chartGraph: Int,
 )
 
-class PositionsHelper {
-    fun getPositions(): List<Position> {
-        return listOf<Position>(
-            Position("ALK", "Alaska Air Group, Inc", "$7,918", "-0.54%", R.drawable.home_alk),
-            Position("BA", "Boeing Co.", "$1,293", "+4.18%", R.drawable.home_ba),
-            Position("DAL", "Delta Airlines Inc.", "$893.50", "-0.54%", R.drawable.home_dal),
-            Position("EXPE", "Expedia Group Inc.", "$12,301", "+2.51%", R.drawable.home_exp),
-            Position("EADSY", "Airbus SE", "$12,301", "+1.38%", R.drawable.home_eadsy),
-            Position("JBLU", "JEtblue Airways Corp.", "$8,251", "+1.56%", R.drawable.home_jblu),
-            Position("MAR", "Marriot International Inc.", "$521", "+2.75%", R.drawable.home_mar),
-            Position("CCL", "Carnival Corp", "$5,481", "+0.14%", R.drawable.home_ccl),
-            Position("RCL", "Royal Caribbean Cruises", "$9,184", "+1.69%", R.drawable.home_rcl),
-            Position("TRVL", "Travelocity Inc.", "$654", "+3.23%", R.drawable.home_trvl),
-        )
-    }
+class StockPositionsDataHelper {
+    companion object{
 
-    fun getPosition(): Position {
-        return Position("Alk", "Alaska Air Group, Inc.", "$7,918", "-0.54%", R.drawable.home_alk)
+        /**
+         * Helper method used for getting fake data of multiple positions position
+         */
+        fun getStockPositions(): List<StockPositionDO> {
+            return listOf<StockPositionDO>(
+                StockPositionDO("ALK", "Alaska Air Group, Inc", "$7,918", "-0.54%", R.drawable.home_alk),
+                StockPositionDO("BA", "Boeing Co.", "$1,293", "+4.18%", R.drawable.home_ba),
+                StockPositionDO("DAL", "Delta Airlines Inc.", "$893.50", "-0.54%", R.drawable.home_dal),
+                StockPositionDO("EXPE", "Expedia Group Inc.", "$12,301", "+2.51%", R.drawable.home_exp),
+                StockPositionDO("EADSY", "Airbus SE", "$12,301", "+1.38%", R.drawable.home_eadsy),
+                StockPositionDO("JBLU", "JEtblue Airways Corp.", "$8,251", "+1.56%", R.drawable.home_jblu),
+                StockPositionDO("MAR", "Marriot International Inc.", "$521", "+2.75%", R.drawable.home_mar),
+                StockPositionDO("CCL", "Carnival Corp", "$5,481", "+0.14%", R.drawable.home_ccl),
+                StockPositionDO("RCL", "Royal Caribbean Cruises", "$9,184", "+1.69%", R.drawable.home_rcl),
+                StockPositionDO("TRVL", "Travelocity Inc.", "$654", "+3.23%", R.drawable.home_trvl),
+            )
+        }
+
+        /**
+         * Helper method used for getting fake data of single position
+         */
+        fun getStockPosition(): StockPositionDO {
+            return StockPositionDO("Alk", "Alaska Air Group, Inc.", "$7,918", "-0.54%", R.drawable.home_alk)
+        }
     }
 }
