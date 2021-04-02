@@ -18,6 +18,7 @@ package com.example.androiddevchallenge.screen
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -42,6 +43,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.components.SolidButton
 import com.example.androiddevchallenge.logonScreenRoute
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.clear
@@ -81,30 +83,19 @@ fun WelcomeScreen(navController: NavHostController) {
                 }
         ) {
 
-            Row() {
+            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 val context = LocalContext.current
-                Button(
+                SolidButton(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .weight(1f)
-                        .padding(end = 4.dp),
-                    shape = RoundedCornerShape(50),
-                    onClick = {
-                        Toast.makeText(
-                            context,
-                            "Get Started button not implemented",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
-                ) {
-                    Text(text = "GET STARTED", style = MaterialTheme.typography.button)
-                }
-                // TODO change button outline to yellow, need to find how to
+                        .weight(1f),
+                    text = "GET STARTED",
+                    onClick = { /*TODO*/ }
+                )
                 OutlinedButton(
                     modifier = Modifier
                         .fillMaxHeight()
-                        .weight(1f)
-                        .padding(start = 4.dp),
+                        .weight(1f),
                     border = BorderStroke(width = 2.dp, color = yellow),
                     shape = RoundedCornerShape(50),
                     colors = ButtonDefaults.buttonColors(

@@ -1,9 +1,14 @@
 package com.example.androiddevchallenge.components
 
+import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonColors
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -25,22 +30,21 @@ import com.example.androiddevchallenge.ui.theme.yellow
 fun ClearOutlinedButton(
     text: String,
     onClick: () -> Unit,
-    color: Color,
+    color: Color?,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null
 ) {
     OutlinedButton(
         modifier = modifier,
-        border = BorderStroke(width = 1.dp, color = color),
+        border = BorderStroke(width = 1.dp, color = color ?: Color.Unspecified),
         shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
             backgroundColor = clear,
-            contentColor = color
         ),
         onClick = { onClick() }
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Text(text = text, style = MaterialTheme.typography.button, color = color)
+            Text(text = text, style = MaterialTheme.typography.button, color = color ?: Color.Unspecified)
             if (icon != null) {
                 Icon(
                     imageVector = icon,
@@ -48,6 +52,25 @@ fun ClearOutlinedButton(
                 )
             }
         }
+    }
+}
+
+@Composable
+fun SolidButton(
+    modifier: Modifier = Modifier,
+    text: String,
+    onClick: () -> Unit,
+    buttonColor: Color = MaterialTheme.colors.primary,
+    textColor: Color = Color.Unspecified,
+) {
+    Button(
+        modifier = modifier,
+        shape = RoundedCornerShape(50),
+        onClick = { onClick() },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = buttonColor,
+        )    ) {
+        Text(text = text, style = MaterialTheme.typography.button, color = textColor)
     }
 }
 

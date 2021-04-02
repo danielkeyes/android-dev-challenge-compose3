@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -52,6 +53,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
 import com.example.androiddevchallenge.components.ClearOutlinedButton
+import com.example.androiddevchallenge.components.SolidButton
 import com.example.androiddevchallenge.ui.theme.MyTheme
 import com.example.androiddevchallenge.ui.theme.green
 import com.example.androiddevchallenge.ui.theme.typography
@@ -96,13 +98,11 @@ fun HomeScreen(navController: NavHostController) {
             Spacer(modifier = Modifier.height(24.dp))
             Text(text = "+412.35 today",modifier = Modifier.paddingFromBaseline(16.dp), style = typography.subtitle1, color = green)
             Spacer(modifier = Modifier.height(32.dp))
-            Button(
+            SolidButton(
                 modifier = Modifier.fillMaxWidth().height(48.dp),
-                shape = RoundedCornerShape(50),
-                onClick = { }
-            ) {
-                Text(text = "TRANSACT")
-            }
+                text = "TRANSACT",
+                onClick = { /*TODO*/ }
+            )
             Spacer(modifier = Modifier.height(16.dp))
             val myItems = listOf<Filter>(
                 Filter("Week", true),

@@ -43,6 +43,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.navigate
 import androidx.navigation.compose.rememberNavController
 import com.example.androiddevchallenge.R
+import com.example.androiddevchallenge.components.SolidButton
 import com.example.androiddevchallenge.homeScreenRoute
 import com.example.androiddevchallenge.ui.theme.MyTheme
 
@@ -93,21 +94,16 @@ fun LogonScreen(navController: NavHostController) {
                 leadingIcon = { Icon(Icons.Outlined.Password, "") },
                 onValueChange = { /*TODO*/ }
             )
-            Button(
+            SolidButton(
                 modifier = Modifier
                     .padding(top = 16.dp)
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(50),
+                    .fillMaxWidth()
+                    .height(48.dp),
+                text = "Log In",
                 onClick = {
                     navController.navigate(homeScreenRoute)
                 }
-            ) {
-                Text(
-                    text = "Log In",
-                    modifier = Modifier.padding(16.dp),
-                    style = MaterialTheme.typography.button
-                )
-            }
+            )
         }
     }
 }
