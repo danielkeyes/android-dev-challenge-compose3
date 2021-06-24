@@ -6,11 +6,15 @@ Third challenge of the Android Compose dev challenges. Doing this in my free tim
 ## :bulb: Motivation and Context
 My motivation is to become even more familiar with Compose and have fun creating UIs.
 
+I came back in and added screenshots and finished this up as much as I wanted to. I got most things done, and stopped when I felt I got the benefit from it.
+
+This was one of the better compose challenges because it showcases a lot of different items from compose. I did the challenge after the challenge window because I wanted to learn, but didn't want to rush and finish this.
 
 ## :camera_flash: Screenshots
-Todo: Add screenshots when complete
-
-<!-- <img src="/results/screenshot_1.png" width="260">&emsp;<img src="/results/screenshot_2.png" width="260"> -->
+<img src="/results/Screenshot_01.png" width="260"> 
+<img src="/results/Screenshot_02.png" width="260"> 
+<img src="/results/Screenshot_03.png" width="260"> 
+<img src="/results/Screenshot_04.png" width="260"> 
 
 ## License
 ```
